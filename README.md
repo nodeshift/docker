@@ -81,17 +81,17 @@ Running the image in Development Mode uses `nodemon` to watch for changes in you
 To enable your local changes to be updated in the Docker image, you must map your local file system into the running Docker container, as follows:
 
 1. Generate a Linux version of your `node_modules` dependencies locally, by generating them inside the node:8 docker image:
-  ```sh
-  docker run -i -v "$PWD"/package.json:/tmp/package.json -v "$PWD"/node_modules_linux:/tmp/node_modules -w /tmp -t node:8 npm install
-  ```
-  This step only needs to be repeated if you modify your package.json file.
+   ```sh
+   docker run -i -v "$PWD"/package.json:/tmp/package.json -v "$PWD"/node_modules_linux:/tmp/node_modules -w /tmp -t node:8 npm install
+   ```
+   This step only needs to be repeated if you modify your package.json file.
 
-2. Run the Docker tools image as an interactive application on your command line in dev mode:
-  ```sh
-  docker run -i -p 3000:3000 -v "$PWD"/:/app -v "$PWD"/node_modules_linux:/app/node_modules -t my-nodejs-application-tools /bin/run-dev
-  ```
-  This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need to change the mapping.
-  This command also maps your local directory into the Docker container, allowing you to modify your Node.js application code and see the changes running immediately in the container.
+1. Run the Docker tools image as an interactive application on your command line in dev mode:
+   ```sh
+   docker run -i -p 3000:3000 -v "$PWD"/:/app -v "$PWD"/node_modules_linux:/app/node_modules -t my-nodejs-application-tools /bin/run-dev
+   ```
+   This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need to change the mapping.
+   This command also maps your local directory into the Docker container, allowing you to modify your Node.js application code and see the changes running immediately in the container.
 
 ### Running the Docker tools image for your application: Debug Mode
 
@@ -146,21 +146,20 @@ After the Docker run image has been created for your application, you can run it
 In order to use your application's Docker image in a cloud it needs to be published. You can deploy to the image to the DockerHub registry using the following commands:
 
 1. Log in to DockerHub:
-  ```sh
-  docker login
-  ```
-  This logs you into DockerHub using your [Docker ID](https://docs.docker.com/docker-id/#/register-for-a-docker-id), where you have a namespace that matches your DockerHub ID.
+
+   ```sh
+   docker login
+   ```
+   This logs you into DockerHub using your [Docker ID](https://docs.docker.com/docker-id/#/register-for-a-docker-id), where you have a namespace that matches your DockerHub ID.
 
 2. Tag your application's Docker image with the name you want to use in DockerHub:
-  ```sh
-  docker tag my-nodejs-application-run <namespace>/nodeserver:1.0.0
-  ```
-  where `<namespace>` is your namespace in DockerHub.
+   ```sh
+   docker tag my-nodejs-application-run <namespace>/nodeserver:1.0.0
+   ```
+   where `<namespace>` is your namespace in DockerHub.
 
 3. Publish your application's Docker image to DockerHub:
-  ```sh
-  docker push <namespace>/nodeserver:1.0.0
-  ```
-  where `<namespace>` is your namespace in DockerHub.
-
-
+   ```sh
+   docker push <namespace>/nodeserver:1.0.0
+   ```
+   where `<namespace>` is your namespace in DockerHub.
