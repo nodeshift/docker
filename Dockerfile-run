@@ -9,8 +9,10 @@ RUN apt-get update \
  && apt-get clean \
  && echo 'Finished installing dependencies'
 
+# Copy package.json and package-lock.json
+COPY package*.json .
+
 # Install app dependencies
-COPY package.json /app/
 RUN npm install --production
 
 # Copy the dependencies into a Slim Node docker image

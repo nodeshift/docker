@@ -9,9 +9,11 @@ RUN apt-get update \
  && apt-get clean \
  && echo 'Finished installing dependencies'
 
+# Copy package.json and package-lock.json
+COPY package*.json .
+
 # Install npm production packages 
-COPY package.json /app/
-RUN cd /app; npm install --production
+RUN npm install --production
 
 COPY . /app
 
