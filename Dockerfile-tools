@@ -16,7 +16,7 @@ COPY run-debug /bin
 RUN chmod 777 /bin/run-dev /bin/run-debug
 
 # Install nodemon for use with "dev" mode
-RUN npm install nodemon
+RUN npm install -g nodemon
 
 # Bundle app source and install dependencies
 COPY . /app
