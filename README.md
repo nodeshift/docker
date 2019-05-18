@@ -14,6 +14,18 @@ This project contains three template Dockerfiles:
 
 In order to use these template files, copy the files from this project into your application directory.
 
+## Installing the Templates
+
+The templates can most easily be installed into your project using either of the following mechanisms:
+
+* All Files:  
+  Use the "Clone or download" button and select "Download ZIP" to copy the entire set of templates, and copy those into your project.
+* Individual Files:  
+  Use "wget" to download individual files using:
+  ```sh
+  wget https://raw.githubusercontent.com/CloudNativeJS/docker/master/{file}
+  ```
+
 ## Using `Dockerfile`
 
 The Dockerfile template creates a Docker image for your application that:
