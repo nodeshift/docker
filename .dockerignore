@@ -1,2 +1,9 @@
-node_modules/
-node_modules_linux/
+**/node_modules/
+**/node_modules_linux/
+**/Dockerfile
+**/.dockerignore
+**/.gitignore
+**/.git
+**/README.md
+**/LICENSE
+**/.vscode
