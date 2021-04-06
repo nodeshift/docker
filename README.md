@@ -30,7 +30,7 @@ The templates can most easily be installed into your project using either of the
 
 The Dockerfile template creates a Docker image for your application that:
 
-* Uses the node:10 image
+* Uses the node:14 image
 * Runs your application under the `node` user 
 
 The template also makes the following assumptions about your application:
@@ -67,7 +67,7 @@ After the Docker image has been created for your application, you can run it usi
 
 The Dockerfile-tools template creates a Docker image for your application that:
 
-* Uses the node:10 image
+* Uses the node:14 image
 * Runs you application under the `node` user 
 * Provides a script for running in `dev` mode using `nodemon`
 * Provides a script for running in `debug` mode using `node --inspect`
@@ -92,9 +92,9 @@ Running the image in Development Mode uses `nodemon` to watch for changes in you
 
 To enable your local changes to be updated in the Docker image, you must map your local file system into the running Docker container, as follows:
 
-1. Generate a Linux version of your `node_modules` dependencies locally, by generating them inside the node:10 docker image:
+1. Generate a Linux version of your `node_modules` dependencies locally, by generating them inside the node:14 docker image:
   ```sh
-  docker run -i -v "$PWD"/package.json:/tmp/package.json -v "$PWD"/node_modules_linux:/tmp/node_modules -w /tmp -t node:10 npm install
+  docker run -i -v "$PWD"/package.json:/tmp/package.json -v "$PWD"/node_modules_linux:/tmp/node_modules -w /tmp -t node:14 npm install
   ```
   This step only needs to be repeated if you modify your package.json file.
   
@@ -120,8 +120,8 @@ If you wish to run your Docker tools image as a background task, switch the `-i`
 ## Using `Dockerfile-run`
 The Dockerfile-run template creates a Docker image using a multi-stage build that:
 
-* Retrieves your dependencies and compiles any native add-ons using the node:10 image
-* Copies your dependencies into the node:10-slim image for reduced size
+* Retrieves your dependencies and compiles any native add-ons using the node:14 image
+* Copies your dependencies into the node:14-slim image for reduced size
 * Runs your application under the `node` user 
 
 The template also makes the following assumption about your application:
