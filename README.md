@@ -1,7 +1,7 @@
 # Docker Templates for Node.js
 <a href='http://CloudNativeJS.io/'><img src='https://img.shields.io/badge/homepage-CloudNativeJS-blue.svg'></a>
 
-This project uses the official Docker images built from the Node.js [docker-node](https://github.com/nodejs/docker-node) project and provides guidance on how to add best-practise Dockerfiles into your project.
+This project uses the Universal Base Docker images built by Red Hat and provides guidance on how to add best-practise Dockerfiles into your project.
 
 
 This project contains three template Dockerfiles:
@@ -10,7 +10,7 @@ This project contains three template Dockerfiles:
 |-------------------|-----------------------------------------------------------------------|
 | Dockerfile        | A default Dockerfile for building and running your Node.js application |
 | Dockerfile-tools  | A Dockerfile for developing or debugging your Node.js application     |
-| Dockerfile-run    | A multi-stage Dockerfile for building a "run" image for your application, based on the Node.js "slim" image |
+| Dockerfile-run    | A multi-stage Dockerfile for building a "run" image for your application, based on the UBI 8 Node.js Minimal image |
 
 In order to use these template files, copy the files from this project into your application directory.
 
@@ -23,15 +23,14 @@ The templates can most easily be installed into your project using either of the
 * Individual Files:  
   Use "wget" to download individual files using:
   ```sh
-  wget https://raw.githubusercontent.com/CloudNativeJS/docker/master/{file}
+  wget https://raw.githubusercontent.com/NodeShift/docker/main/{file}
   ```
 
 ## Using `Dockerfile`
 
 The Dockerfile template creates a Docker image for your application that:
 
-* Uses the node:14 image
-* Runs your application under the `node` user 
+* Uses the `registry.access.redhat.com/ubi8/nodejs-14:latest` image
 
 The template also makes the following assumptions about your application:
 
@@ -41,6 +40,7 @@ The template also makes the following assumptions about your application:
 You can change these settings by updating the `EXPOSE` and `CMD` entries of the Dockerfile.
 
 ### Building the Docker image for your application
+
 After any required changes have been made to the Dockerfile, you can build a Docker image for your application using the following command:
 
 ```sh
@@ -67,8 +67,7 @@ After the Docker image has been created for your application, you can run it usi
 
 The Dockerfile-tools template creates a Docker image for your application that:
 
-* Uses the node:14 image
-* Runs you application under the `node` user 
+* Uses the `registry.access.redhat.com/ubi8/nodejs-14:latest` image
 * Provides a script for running in `dev` mode using `nodemon`
 * Provides a script for running in `debug` mode using `node --inspect`
 
@@ -120,9 +119,8 @@ If you wish to run your Docker tools image as a background task, switch the `-i`
 ## Using `Dockerfile-run`
 The Dockerfile-run template creates a Docker image using a multi-stage build that:
 
-* Retrieves your dependencies and compiles any native add-ons using the node:14 image
-* Copies your dependencies into the node:14-slim image for reduced size
-* Runs your application under the `node` user 
+* Retrieves your dependencies and compiles any native add-ons using the `registry.access.redhat.com/ubi8/nodejs-14:latest` image
+* Copies your dependencies into the `registry.access.redhat.com/ubi8/nodejs-14-minimal:latest`image for reduced size
 
 The template also makes the following assumption about your application:
 
