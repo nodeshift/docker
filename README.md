@@ -30,7 +30,7 @@ The templates can most easily be installed into your project using either of the
 
 The Dockerfile template creates a Docker image for your application that:
 
-* Uses the `registry.access.redhat.com/ubi8/nodejs-14:latest` image
+* Uses the `registry.access.redhat.com/ubi8/nodejs-16:latest` image
 
 The template also makes the following assumptions about your application:
 
@@ -67,7 +67,7 @@ After the Docker image has been created for your application, you can run it usi
 
 The Dockerfile-tools template creates a Docker image for your application that:
 
-* Uses the `registry.access.redhat.com/ubi8/nodejs-14:latest` image
+* Uses the `registry.access.redhat.com/ubi8/nodejs-16:latest` image
 * Provides a script for running in `dev` mode using `nodemon`
 * Provides a script for running in `debug` mode using `node --inspect`
 
@@ -91,9 +91,9 @@ Running the image in Development Mode uses `nodemon` to watch for changes in you
 
 To enable your local changes to be updated in the Docker image, you must map your local file system into the running Docker container, as follows:
 
-1. Generate a Linux version of your `node_modules` dependencies locally, by generating them inside the node:14 docker image:
+1. Generate a Linux version of your `node_modules` dependencies locally, by generating them inside the node:16 docker image:
   ```sh
-  docker run -i -v "$PWD"/package.json:/tmp/package.json -v "$PWD"/node_modules_linux:/tmp/node_modules -w /tmp -t node:14 npm install
+  docker run -i -v "$PWD"/package.json:/tmp/package.json -v "$PWD"/node_modules_linux:/tmp/node_modules -w /tmp -t node:16 npm install
   ```
   This step only needs to be repeated if you modify your package.json file.
   
@@ -119,8 +119,8 @@ If you wish to run your Docker tools image as a background task, switch the `-i`
 ## Using `Dockerfile-run`
 The Dockerfile-run template creates a Docker image using a multi-stage build that:
 
-* Retrieves your dependencies and compiles any native add-ons using the `registry.access.redhat.com/ubi8/nodejs-14:latest` image
-* Copies your dependencies into the `registry.access.redhat.com/ubi8/nodejs-14-minimal:latest`image for reduced size
+* Retrieves your dependencies and compiles any native add-ons using the `registry.access.redhat.com/ubi8/nodejs-16:latest` image
+* Copies your dependencies into the `registry.access.redhat.com/ubi8/nodejs-16-minimal:latest`image for reduced size
 
 The template also makes the following assumption about your application:
 
